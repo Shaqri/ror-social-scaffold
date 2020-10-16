@@ -24,7 +24,14 @@ class FriendshipsController < ApplicationController
   end
 
   def delete_friend
-    @friendship
+    @friendship = Friendship.find(params[:id])
+    if @friendship
+      @friendship.destroy
+      redirect_to user_friendships_path, notice: 'Friend deleted'
+
+    else
+      redirect_to user_friendships_path, alert: 'Unable to delete friend'
+    end
   end
 
   def cancel_request

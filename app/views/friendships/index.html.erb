@@ -2,7 +2,7 @@
 <ul class="friend-list">
   <% @friends.each do |friend| %>
   <li>
-    <%= friend.name %>
+    <%= friend.user.name %>
     <span>
     <%= delete_friend(friend) %>
     </span>

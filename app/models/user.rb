@@ -12,15 +12,15 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
 
-  def all_friendships
-    friends_array = friendships.map{|friendship| friendship if friendship.confirmed}
-    friends_array = friends_array + inverse_friendships.map{|friendship| friendship if friendship.confirmed}
+  def friend_names
+    friends_array = friendships.map{|friendship| friendship.friend if friendship.confirmed}
+    friends_array = friends_array + inverse_friendships.map{|friendship| friendship.user if friendship.confirmed}
     friends_array.compact
   end
 
   def friends
-   friends_array = friendships.map{|friendship| friendship.friend if friendship.confirmed}
-   friends_array = friends_array + inverse_friendships.map{|friendship| friendship.user if friendship.confirmed}
+   friends_array = friendships.map{|friendship| friendship if friendship.confirmed}
+   friends_array = friends_array + inverse_friendships.map{|friendship| friendship if friendship.confirmed}
    friends_array.compact
  end
 
@@ -41,7 +41,7 @@ class User < ApplicationRecord
  end
 
  def friend?(user)
-   friends.include?(user)
+   friend_names.include?(user)
  end
 
 end
