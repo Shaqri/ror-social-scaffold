@@ -24,5 +24,12 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
+    @friendship = current_user.inverse_friendships.find_by(user_id: params[:id])
+    if @friendship
+      @friendship.destroy
+      redirect_to user_friendships_path, notice: 'Friend request declined'
+    else
+      redirect_to user_friendship_path, alert: 'Unable to decline request'
+    end
   end
 end

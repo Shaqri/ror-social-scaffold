@@ -7,4 +7,11 @@ module UserHelper
     link_to('Confirm friend request', user_friendship_path(id: friend.id), method: :patch)
   end
 
+  def decline_friend(friend)
+    link_to('Decline', user_friendship_path(id: friend.id), method: :delete)
+  end
+
+  def cancel_friend_request
+  end
+
 end
