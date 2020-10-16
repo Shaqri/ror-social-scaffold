@@ -11,7 +11,8 @@ module UserHelper
     link_to('Decline', user_friendship_path(id: friend.id), method: :delete)
   end
 
-  def cancel_friend_request
+  def cancel_friend_request(user)
+    link_to('Cancel', user_friendship_path(id: user.id, user_id: 'true'), method: :delete)
   end
 
 end
