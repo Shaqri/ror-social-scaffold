@@ -23,14 +23,23 @@ class FriendshipsController < ApplicationController
     end
   end
 
-  def destroy
+  def delete_friend
+    @friendship
+  end
 
-    if params[:user_id] == 'true'
-      @friendship = current_user.friendships.find_by(friend_id: params[:id])
+  def cancel_request
+    @friendship = current_user.friendships.find_by(friend_id: params[:id])
+    if @friendship
       @friendship.destroy
       redirect_to users_path, notice: 'Friend request canceled'
-    elsif params[:id]
-      @friendship = current_user.inverse_friendships.find_by(user_id: params[:id])
+    else
+      redirect_to users_path, alert: 'Unable to cancel friend request'
+    end
+  end
+
+  def destroy
+    @friendship = current_user.inverse_friendships.find_by(user_id: params[:id])
+    if @friendship
       @friendship.destroy
       redirect_to user_friendships_path, notice: 'Friend request declined'
     else

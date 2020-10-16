@@ -3,6 +3,9 @@
   <% @friends.each do |friend| %>
   <li>
     <%= friend.name %>
+    <span>
+    <%= delete_friend(friend) %>
+    </span>
   </li>
   <% end %>
 </ul>
