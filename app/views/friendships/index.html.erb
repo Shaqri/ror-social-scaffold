@@ -1,1 +1,18 @@
 <h1>Friends list</h1>
+<ul class="friend-list">
+  <% @friends.each do |friend| %>
+  <li>
+    <%= friend.name %>
+  </li>
+  <% end %>
+</ul>
+
+<h2>Friend requests</h2>
+
+<ul class="friend-list">
+  <% @friend_requests.each do |friend_request| %>
+  <li>
+    <%= friend_request.name %>
+  </li>
+  <% end %>
+</ul>
