@@ -13,6 +13,7 @@
   <% @friend_requests.each do |friend_request| %>
   <li>
     <%= friend_request.name %>
+    <span> <%= confirm_friend(friend_request) %> </span>
   </li>
   <% end %>
 </ul>

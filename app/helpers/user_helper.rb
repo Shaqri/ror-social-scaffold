@@ -3,4 +3,8 @@ module UserHelper
     link_to('Add friend', user_friendships_path(user_id: current_user.id, friend_id: user.id, confirmed: false), method: :post )
   end
 
+  def confirm_friend(friend)
+    link_to('Confirm friend request', user_friendship_path(id: friend.id), method: :patch)
+  end
+
 end

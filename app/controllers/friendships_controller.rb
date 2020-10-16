@@ -13,6 +13,16 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def update
+    @friendship = current_user.inverse_friendships.find_by(user_id: params[:id])
+    if @friendship
+      @friendship.update(confirmed: true)
+      redirect_to user_friendships_path, notice: 'Friend request accepted'
+    else
+      redirect_to user_friendships_path, alert: 'Unable to accept friend request'
+    end
+  end
+
   def destroy
   end
 end
