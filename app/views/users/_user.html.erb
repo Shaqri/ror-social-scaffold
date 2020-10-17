@@ -1,15 +1,13 @@
-<% unless current_user == user %>
+<% unless same_user?(current_user, user) %>
 <li>
   Name: <%= link_to user.name, user_path(user), class: 'profile-link' %>
 
   <span>
     <% if current_user.friend?(user) %>
       Friends
-    <% elsif current_user.pending_friends.include?(user) %>
+    <% elsif pending_friends?(user) %>
           Friend request sent <span> <%= cancel_friend_request(user) %> </span>
-    <% elsif current_user.friend_requests.include?(user) %>
-          Accept friend request <span>Decline</span>
-    <% else %>
+    <% elsif no_friend_requested?(user) %>
       <%= add_friend(user) %>
     <% end %>
   </span>

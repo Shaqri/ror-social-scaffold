@@ -44,7 +44,7 @@ class FriendshipsController < ApplicationController
     end
   end
 
-  def destroy
+  def decline_request
     @friendship = current_user.inverse_friendships.find_by(user_id: params[:id])
     if @friendship
       @friendship.destroy

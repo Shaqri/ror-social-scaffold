@@ -5,10 +5,10 @@ module FriendshipsHelper
   end
 
   def confirm_friend(friend)
-    link_to('Confirm friend request', user_friendship_path(id: friend.id), method: :patch)
+    link_to('Confirm friend request', user_friendship_path(id: friend.id, user_id: current_user.id), method: :patch)
   end
 
   def decline_friend(friend)
-    link_to('Decline', user_friendship_path(id: friend.id), method: :delete)
+    link_to('Decline', user_decline_request_path(id: friend.id, user_id: current_user.id ), method: :delete)
   end
 end

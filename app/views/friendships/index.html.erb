@@ -1,23 +1,14 @@
 <h1>Friends list</h1>
 <ul class="friend-list">
-  <% @friends.each do |friend| %>
+  <% @friends.each do |friendship| %>
   <li>
-    <%= friend.user.name %>
+    <%= friend_name(friendship) %>
     <span>
-    <%= delete_friend(friend) %>
+    <%= delete_friend(friendship) %>
     </span>
   </li>
   <% end %>
 </ul>
 
 <h2>Friend requests</h2>
-
-<ul class="friend-list">
-  <% @friend_requests.each do |friend_request| %>
-  <li>
-    <%= friend_request.name %>
-    <span> <%= confirm_friend(friend_request) %> </span>
-    <span> <%= decline_friend(friend_request) %> </span>
-  </li>
-  <% end %>
-</ul>
+<%= render 'friend_requests' %>
