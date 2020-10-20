@@ -4,7 +4,7 @@ module UserHelper
   end
 
   def cancel_friend_request(user)
-    link_to('Cancel', user_cancel_request_path(id: user.id, user_id: current_user.id), method: :delete)
+    link_to('Cancel Friend Request', user_cancel_request_path(id: user.id, user_id: current_user.id), method: :delete)
   end
 
   def same_user?(a, b)

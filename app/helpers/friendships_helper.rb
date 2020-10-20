@@ -1,7 +1,7 @@
 module FriendshipsHelper
 
   def delete_friend(friend)
-    link_to('Delete friend', user_delete_friend_path(id: friend.id), method: :delete )
+    link_to('Unfriend', user_delete_friend_path(id: friend.id), method: :delete )
   end
 
   def confirm_friend(friend)

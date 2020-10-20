@@ -7,9 +7,9 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = Friendship.new(user_id: params[:user_id], friend_id: params[:friend_id], confirmed: params[:confirmed])
     if @friendship.save
-      redirect_to users_path, notice: 'Friend request sent'
+      redirect_back(fallback_location: root_path, notice: 'Friend request sent')
     else
-      redirect_to user_friendships_path, alert: 'Unable to send friend request'
+      redirect_back(fallback_location: root_path, alert: 'Unable to send friend request')
     end
   end
 
@@ -17,9 +17,9 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.inverse_friendships.find_by(user_id: params[:id])
     if @friendship
       @friendship.update(confirmed: true)
-      redirect_to user_friendships_path, notice: 'Friend request accepted'
+      redirect_back(fallback_location: root_path, notice: 'Friend request accepted')
     else
-      redirect_to user_friendships_path, alert: 'Unable to accept friend request'
+      redirect_back(fallback_location: root_path, alert: 'Unable to send friend request')
     end
   end
 
@@ -38,9 +38,9 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.friendships.find_by(friend_id: params[:id])
     if @friendship
       @friendship.destroy
-      redirect_to users_path, notice: 'Friend request canceled'
+      redirect_back(fallback_location: root_path, notice: 'Friend request canceled')
     else
-      redirect_to users_path, alert: 'Unable to cancel friend request'
+      redirect_back(fallback_location: root_path, notice: 'Unable to cancel friend request')
     end
   end
 

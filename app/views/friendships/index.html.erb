@@ -1,14 +1,21 @@
-<h1>Friends list</h1>
-<ul class="friend-list">
+<h1 class="friends-title">Friends list</h1>
+<ul class="users-section">
   <% @friends.each do |friendship| %>
-  <li>
-    <%= friend_name(friendship) %>
-    <span>
-    <%= delete_friend(friendship) %>
-    </span>
+  <li class="user-item">
+    <div class="user-name">
+      <%= friend_name(friendship) %>
+    </div>
+
+    <div class="user-content">
+      <span class="user-state">
+      <%= delete_friend(friendship) %>
+      </span>
+    </div>
   </li>
   <% end %>
 </ul>
 
-<h2>Friend requests</h2>
+<% if @friend_requests.any? %>
+<h2 class="friends-title">Friend requests <span>(<%= @friend_requests.size%>)</span></h2>
 <%= render 'friend_requests' %>
+<% end %>

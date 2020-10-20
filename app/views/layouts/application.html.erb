@@ -24,7 +24,11 @@
         <% end %>
       </div>
       <% if current_user %>
+      <div class="user-nav">
+        <%= link_to current_user.name, user_path(current_user), class: 'user-nav-item' %>
         <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+      </div>
+
       <% else %>
         <%= link_to 'Sign in', user_session_path %>
       <% end %>

@@ -35,12 +35,26 @@ a {
   color: $primary-color-text;
 }
 
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
   padding: 16px 48px;
   background-color: $primary-color-dark;
   color: $primary-color-light;
+
+  .user-nav {
+    white-space: nowrap;
+    .user-nav-item {
+      margin-right: 1em;
+    }
+  }
 
   a {
     color: $primary-color-light;
@@ -274,21 +288,46 @@ form {
     }
   }
 }
+.friends-title {
+  margin: 0.8em 0;
+}
+
+.user-state {
+  border: 2px solid #dcedc8;
+  border-radius: 5px;
+  padding: 2px;
+  margin-left: 2px;
+  font-size: 16px;
+  font-weight: 300;
+  &:hover {
+    background: #dcedc8;
+  }
+}
 
 .users-section {
-  width: 100%;
-  margin: 10px;
 
-  .users-list li {
-    margin-bottom: 16px;
+    width: 25%;
+
+  .user-name {
+    margin-bottom: .5em;
     text-transform: capitalize;
-    font-size: 1.2em;
+    a {
+      &:hover{
+        text-decoration: underline;
+      }
+    }
   }
+  .user-item {
 
-  .profile-link {
-    font-size: 0.8em;
-    margin: 0 0 8px 0;
-    color: $primary-color-dark;
+    padding: 5px;
+    border: 1px solid #dadce0;
+    margin-bottom: .5em;
+    border-radius: 3px;
+    .user-content {
+      display: flex;
+      justify-content: flex-end;
+    }
+
   }
 }
 
@@ -329,7 +368,6 @@ form {
 
   .new_post,
   .timeline,
-  .users-section,
   .user-section {
     width: 70%;
   }
@@ -342,7 +380,6 @@ form {
 
   .new_post,
   .timeline,
-  .users-section,
   .user-section {
     width: 50%;
   }
