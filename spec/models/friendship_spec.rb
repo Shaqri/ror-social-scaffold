@@ -11,6 +11,4 @@ RSpec.describe Friendship do
       expect(friendship.macro).to eq(:belongs_to)
     end
   end
-
-
 end

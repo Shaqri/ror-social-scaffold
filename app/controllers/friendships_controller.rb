@@ -5,7 +5,7 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    @friendship = Friendship.new(user_id: params[:user_id], friend_id: params[:friend_id], confirmed: params[:confirmed])
+    @friendship = Friendship.new(user_id: params[:user_id], friend_id: params[:friend_id], confirmed: params[:c])
     if @friendship.save
       redirect_back(fallback_location: root_path, notice: 'Friend request sent')
     else

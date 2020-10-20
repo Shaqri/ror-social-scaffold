@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Friendships features' do
-  let(:sign_up)do
+  let(:sign_up) do
     visit('/')
     click_link('Sign up')
     within('form') do
@@ -12,10 +12,10 @@ RSpec.describe 'Friendships features' do
       click_button 'Sign up'
     end
   end
-  let(:create_friend)do
+  let(:create_friend) do
     User.create(email: 'example@example.com', name: 'sample', password: 'sample')
   end
-  let(:create_friendship)do
+  let(:create_friendship) do
     Friendship.new(user_id: User.first.id, friend_id: User.last.id, confirmed: false)
   end
 
@@ -54,7 +54,7 @@ RSpec.describe 'Friendships features' do
     end
   end
 
-  describe  'Creating friendships' do
+  describe 'Creating friendships' do
     it 'creates a friend request' do
       send_friend_request
       expect(page).to have_content('Friend request sent')

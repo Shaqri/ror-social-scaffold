@@ -1,19 +1,20 @@
 module UserHelper
   def add_friend(user)
-    link_to('Add friend', user_friendships_path(user_id: current_user.id, friend_id: user.id, confirmed: false), method: :post )
+    link_to('Add friend', user_friendships_path(user_id: current_user.id, friend_id: user.id, c: false), method: :post)
   end
 
   def cancel_friend_request(user)
     link_to('Cancel Friend Request', user_cancel_request_path(id: user.id, user_id: current_user.id), method: :delete)
   end
 
-  def same_user?(a, b)
-    a == b ? true : false
+  def same_user?(user_a, user_b)
+    user_a == user_b
   end
 
   def friend_name(friendship)
-    if  same_user?(friendship.user.name, current_user.name)
+    if same_user?(friendship.user.name, current_user.name)
       friendship.friend.name
+
     else
       friendship.user.name
     end
