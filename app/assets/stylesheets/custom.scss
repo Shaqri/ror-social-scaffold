@@ -51,6 +51,7 @@ section {
 
   .user-nav {
     white-space: nowrap;
+
     .user-nav-item {
       margin-right: 1em;
     }
@@ -288,6 +289,7 @@ form {
     }
   }
 }
+
 .friends-title {
   margin: 0.8em 0;
 }
@@ -299,35 +301,36 @@ form {
   margin-left: 2px;
   font-size: 16px;
   font-weight: 300;
+
   &:hover {
     background: #dcedc8;
   }
 }
 
 .users-section {
-
-    width: 25%;
+  width: 25%;
 
   .user-name {
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     text-transform: capitalize;
+
     a {
-      &:hover{
+      &:hover {
         text-decoration: underline;
       }
     }
   }
-  .user-item {
 
+  .user-item {
     padding: 5px;
     border: 1px solid #dadce0;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     border-radius: 3px;
+
     .user-content {
       display: flex;
       justify-content: flex-end;
     }
-
   }
 }
 
