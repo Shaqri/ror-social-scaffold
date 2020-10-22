@@ -34,11 +34,13 @@ module UserHelper
 
   def user_current_relation(user)
     if current_user.friend?(user)
-      content_tag(:span, 'Friends', class: 'user-state')
+      state = 'Friends'
     elsif pending_friends?(user)
-      content_tag(:span, cancel_friend_request(user), class: 'user-state')
+      state = cancel_friend_request(user)
     elsif no_friend_requested?(user)
-      content_tag(:span, add_friend(user), class: 'user-state')
+      state = add_friend(user)
     end
+
+    content_tag(:span, state, class: 'user-state')
   end
 end
