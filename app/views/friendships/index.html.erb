@@ -15,7 +15,5 @@
   <% end %>
 </ul>
 
-<% if @friend_requests.any? %>
-<h2 class="friends-title">Friend requests <span>(<%= @friend_requests.size%>)</span></h2>
+<%= display_friend_requests_h2(@friend_requests) %>
 <%= render 'friend_requests' %>
-<% end %>

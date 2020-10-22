@@ -10,4 +10,8 @@ module FriendshipsHelper
   def decline_friend(friend)
     link_to('Decline', user_decline_request_path(id: friend.id, user_id: current_user.id), method: :delete)
   end
+
+  def display_friend_requests_h2(friend_requests)
+    content_tag(:h2, "Friend requests (#{friend_requests.size})", class: 'friends-title') if friend_requests.any?
+  end
 end

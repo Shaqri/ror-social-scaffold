@@ -27,4 +27,18 @@ module UserHelper
   def no_friend_requested?(user)
     current_user.friend_requests.include?(user) ? false : true
   end
+
+  def display_users(current_user, user)
+    render 'users', user: user unless same_user?(current_user, user) || current_user.friend_requests.include?(user)
+  end
+
+  def user_current_relation(user)
+    if current_user.friend?(user)
+      content_tag(:span, 'Friends', class: 'user-state')
+    elsif pending_friends?(user)
+      content_tag(:span, cancel_friend_request(user), class: 'user-state')
+    elsif no_friend_requested?(user)
+      content_tag(:span, add_friend(user), class: 'user-state')
+    end
+  end
 end
