@@ -21,7 +21,7 @@ module UserHelper
   end
 
   def pending_friends?(user)
-    current_user.pending_friends.include?(user) ? true : false
+    current_user.pending_friends.include?(user)
   end
 
   def no_friend_requested?(user)

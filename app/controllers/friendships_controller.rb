@@ -35,7 +35,7 @@ class FriendshipsController < ApplicationController
   end
 
   def cancel_request
-    @friendship = current_user.friendships.find_by(friend_id: params[:id])
+    @friendship = current_user.pending_friendships.find_by(friend_id: params[:id])
     if @friendship
       @friendship.destroy
       redirect_back(fallback_location: root_path, notice: 'Friend request canceled')
