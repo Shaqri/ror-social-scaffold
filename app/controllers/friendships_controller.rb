@@ -16,8 +16,7 @@ class FriendshipsController < ApplicationController
   def update
     @friendship = current_user.friendship_requests.find_by(user_id: params[:id])
     if @friendship
-      @friendship.update(confirmed: true)
-      Friendship.create(user_id: params[:user_id], friend_id: params[:id], confirmed: true)
+      create_mutual_friendship(@friendship)
       redirect_back(fallback_location: root_path, notice: 'Friend request accepted')
     else
       redirect_back(fallback_location: root_path, alert: 'Unable to send friend request')
@@ -56,4 +55,13 @@ class FriendshipsController < ApplicationController
       redirect_to user_friendship_path, alert: 'Unable to decline request'
     end
   end
+
+  private
+
+  def create_mutual_friendship(friendship)
+    friendship.update(confirmed: true)
+    Friendship.create(user_id: params[:user_id], friend_id: params[:id], confirmed: true)
+  end
+
+
 end
