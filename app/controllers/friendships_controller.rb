@@ -14,9 +14,10 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    @friendship = current_user.inverse_friendships.find_by(user_id: params[:id])
+    @friendship = current_user.friendship_requests.find_by(user_id: params[:id])
     if @friendship
       @friendship.update(confirmed: true)
+      Friendship.create(user_id: params[:user_id], friend_id: params[:id], confirmed: true)
       redirect_back(fallback_location: root_path, notice: 'Friend request accepted')
     else
       redirect_back(fallback_location: root_path, alert: 'Unable to send friend request')
@@ -45,7 +46,7 @@ class FriendshipsController < ApplicationController
   end
 
   def decline_request
-    @friendship = current_user.inverse_friendships.find_by(user_id: params[:id])
+    @friendship = current_user.friendship_requests.find_by(user_id: params[:id])
     if @friendship
       @friendship.destroy
       redirect_to user_friendships_path, notice: 'Friend request declined'
