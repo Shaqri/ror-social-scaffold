@@ -29,7 +29,7 @@ class FriendshipsController < ApplicationController
     @friendship << current_user.friendships.find_by(friend_id: params[:id])
     @friendship << @friendship[0].friend.friendships.find_by(friend_id: current_user.id)
     if @friendship.size == 2
-      @friendship.each { |friendship| friendship.destroy }
+      @friendship.each(&:destroy)
       redirect_to user_friendships_path, notice: 'Friend deleted'
 
     else
