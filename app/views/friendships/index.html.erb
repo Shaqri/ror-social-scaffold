@@ -1,14 +1,14 @@
 <h1 class="friends-title">Friends list</h1>
 <ul class="users-section">
-  <% @friends.each do |friendship| %>
+  <% @friends.each do |friend| %>
   <li class="user-item">
     <div class="user-name">
-      <%= friend_name(friendship) %>
+      <%= friend.name %>
     </div>
 
     <div class="user-content">
       <span class="user-state">
-      <%= delete_friend(friendship) %>
+      <%= delete_friend(friend) %>
       </span>
     </div>
   </li>
