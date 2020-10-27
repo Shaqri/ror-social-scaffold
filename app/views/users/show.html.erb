@@ -1,5 +1,17 @@
 <section class="user-section">
-  <h2><%= "Name: #{@user.name}" %></h2>
+  <h2><%= "Name: #{@user.name}" %>
+  <% unless same_user?(current_user, @user) %>
+    <% if current_user.friend?(@user) %>
+      <span class="user-state">Friends</span>
+    <% elsif pending_friends?(@user) %>
+
+    <span class="user-state"> <%= cancel_friend_request(@user) %> </span>
+
+     <% elsif no_friend_requested?(@user) %>
+    <span class="user-state"><%= add_friend(@user) %></span>
+    <% end %>
+  <% end %>
+  </h2>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
