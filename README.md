@@ -2,6 +2,8 @@
 
 > This repo includes intial code for social media app with basic styling. Its purpose is to be a starting point for Microverse students.
 
+In this project, I worked on the friendships feature. A user can send/ cancel a friend request to other registered users, Accept or decline an incoming friend request, and delete a current friend.
+
 ## Built With
 
 - Ruby v2.7.0
@@ -9,7 +11,7 @@
 
 ## Live Demo
 
-TBA
+https://murmuring-crag-78659.herokuapp.com/
 
 
 ## Getting Started
@@ -63,15 +65,13 @@ Open `http://localhost:3000/` in your browser.
     rpsec --format documentation
 ```
 
-> Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
+## Author
 
-### Deployment
+👤 **Victor Manuel Gonzalez Buitrago**
 
-TBA
-
-## Authors
-
-TBA
+- Github: [@Shaqri](https://github.com/Shaqri)
+- Twitter: [@victorgonbu](https://twitter.com/victorgonbu)
+- Linkedin: [linkedin](https://www.linkedin.com/in/victor-manuel-gonzalez-buitrago/)
 
 ## 🤝 Contributing
 
@@ -85,9 +85,8 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-TBA
+- [Thanks Microverse][https://github.com/microverseinc]
 
 ## 📝 License
 
 TBA
-
