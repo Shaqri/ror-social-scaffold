@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Post requests' do
+
+RSpec.describe 'Like requests' do
   let(:user) do
     User.create(email: 'victor@victor.com', name: 'victor', password: 'victor')
   end
@@ -14,18 +15,8 @@ RSpec.describe 'Post requests' do
     }
   end
 
-  describe 'GET index' do
-    it 'displays post index page and found http request' do
-      user
-      post user_session_path, params: user_params
-      get ('/')
-      expect(response).to have_http_status(200)
-
-    end
-  end
-
-  describe 'POST create' do
-    it 'creates a new post and redirect to previous page' do
+  describe 'POST /create' do
+    it 'creates a new like and redirects to previous page' do
       user
       post_params = {
         post: {
@@ -33,9 +24,16 @@ RSpec.describe 'Post requests' do
           content: 'Post content'
         }
       }
-
+      like_params = {
+        like: {
+          user_id: User.first.id,
+          post_id: 1
+        }
+      }
       post user_session_path, params: user_params
       post posts_path, params: post_params
+      expect(response).to have_http_status(302)
+      post post_likes_path(Post.first.id), params: like_params
       expect(response).to have_http_status(302)
     end
   end
