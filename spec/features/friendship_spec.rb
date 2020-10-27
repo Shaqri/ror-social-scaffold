@@ -71,7 +71,7 @@ RSpec.describe 'Friendships features' do
       click_link('Friends')
       click_link('Confirm friend request')
       expect(page).to have_content('Friend request accepted')
-      expect(User.first.friend_names.first).to eq(User.last)
+      expect(User.first.friends.first).to eq(User.last)
     end
   end
 
@@ -97,6 +97,7 @@ RSpec.describe 'Friendships features' do
       create_friend
       create_friendship.confirmed = true
       create_friendship.save
+      Friendship.create(user_id: User.last.id, friend_id: User.first.id, confirmed: true)
       click_link('Friends')
       click_link('Unfriend')
       expect(page).to have_content('Friend deleted')

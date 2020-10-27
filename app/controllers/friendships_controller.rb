@@ -14,9 +14,9 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    @friendship = current_user.inverse_friendships.find_by(user_id: params[:id])
+    @friendship = current_user.friendship_requests.find_by(user_id: params[:id])
     if @friendship
-      @friendship.update(confirmed: true)
+      create_mutual_friendship(@friendship)
       redirect_back(fallback_location: root_path, notice: 'Friend request accepted')
     else
       redirect_back(fallback_location: root_path, alert: 'Unable to send friend request')
@@ -24,9 +24,11 @@ class FriendshipsController < ApplicationController
   end
 
   def delete_friend
-    @friendship = Friendship.find(params[:id])
-    if @friendship
-      @friendship.destroy
+    @friendship = []
+    @friendship << current_user.friendships.find_by(friend_id: params[:id])
+    @friendship << @friendship[0].friend.friendships.find_by(friend_id: current_user.id)
+    if @friendship.size == 2
+      @friendship.each(&:destroy)
       redirect_to user_friendships_path, notice: 'Friend deleted'
 
     else
@@ -35,7 +37,7 @@ class FriendshipsController < ApplicationController
   end
 
   def cancel_request
-    @friendship = current_user.friendships.find_by(friend_id: params[:id])
+    @friendship = current_user.pending_friendships.find_by(friend_id: params[:id])
     if @friendship
       @friendship.destroy
       redirect_back(fallback_location: root_path, notice: 'Friend request canceled')
@@ -45,12 +47,19 @@ class FriendshipsController < ApplicationController
   end
 
   def decline_request
-    @friendship = current_user.inverse_friendships.find_by(user_id: params[:id])
+    @friendship = current_user.friendship_requests.find_by(user_id: params[:id])
     if @friendship
       @friendship.destroy
       redirect_to user_friendships_path, notice: 'Friend request declined'
     else
       redirect_to user_friendship_path, alert: 'Unable to decline request'
     end
+  end
+
+  private
+
+  def create_mutual_friendship(friendship)
+    friendship.update(confirmed: true)
+    Friendship.create(user_id: params[:user_id], friend_id: params[:id], confirmed: true)
   end
 end

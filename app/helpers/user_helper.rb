@@ -11,17 +11,8 @@ module UserHelper
     user_a == user_b
   end
 
-  def friend_name(friendship)
-    if same_user?(friendship.user.name, current_user.name)
-      friendship.friend.name
-
-    else
-      friendship.user.name
-    end
-  end
-
   def pending_friends?(user)
-    current_user.pending_friends.include?(user) ? true : false
+    current_user.pending_friends.include?(user)
   end
 
   def no_friend_requested?(user)
