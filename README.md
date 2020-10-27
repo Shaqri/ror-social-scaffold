@@ -11,7 +11,7 @@ In this project, I worked on the friendships feature. A user can send/ cancel a 
 
 ## Live Demo
 
-TBA
+https://murmuring-crag-78659.herokuapp.com/
 
 
 ## Getting Started
