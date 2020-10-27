@@ -18,9 +18,8 @@ RSpec.describe 'Post requests' do
     it 'displays post index page and found http request' do
       user
       post user_session_path, params: user_params
-      get ('/')
+      get('/')
       expect(response).to have_http_status(200)
-
     end
   end
 

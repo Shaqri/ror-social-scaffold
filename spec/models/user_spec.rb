@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User do
-
   let(:user) do
-      user = User.new(email: 'victor@victor.com', name: '', password: 'victor' )
+    User.new(email: 'victor@victor.com', name: '', password: 'victor')
   end
 
   let(:create_users) do
@@ -13,7 +12,7 @@ RSpec.describe User do
   end
 
   let(:_friendship) do
-    Friendship.create(user_id: User.first.id, friend_id: User.last.id, confirmed: true )
+    Friendship.create(user_id: User.first.id, friend_id: User.last.id, confirmed: true)
   end
 
   describe 'Associations' do
@@ -46,7 +45,6 @@ RSpec.describe User do
       user = User.reflect_on_association(:friendship_requests)
       expect(user.macro).to eq(:has_many)
     end
-
   end
 
   describe 'Validations' do
@@ -59,7 +57,7 @@ RSpec.describe User do
       it 'has a maximum length of 20 characters' do
         user.name = 'victor manuel gonzalez buitrago'
         user.valid?
-        expect(user.errors[:name]).to eq(["is too long (maximum is 20 characters)"])
+        expect(user.errors[:name]).to eq(['is too long (maximum is 20 characters)'])
       end
 
       it 'is valid' do

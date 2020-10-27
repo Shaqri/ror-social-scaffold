@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe Post do
   let(:user) do
     User.create(email: 'victor@victor.com', name: 'victor', password: 'victor')
@@ -15,7 +14,6 @@ RSpec.describe Post do
       expect(post.macro).to eq(:belongs_to)
     end
 
-
     it 'has many comments' do
       comment = described_class.reflect_on_association(:comments)
       expect(comment.macro).to eq(:has_many)
@@ -29,7 +27,7 @@ RSpec.describe Post do
 
   describe '.ordered_by_most_recent' do
     it 'Returns post ordered by most recent' do
-      expect(described_class.all.ordered_by_most_recent.to_sql).to eq described_class.all.order(created_at: :desc).to_sql
+      expect(Post.all.ordered_by_most_recent.to_sql).to eq described_class.all.order(created_at: :desc).to_sql
     end
   end
 
@@ -42,9 +40,8 @@ RSpec.describe Post do
         content = (1..500).to_a.join
         post.content = content
         post.valid?
-        expect(post.errors[:content]).to eq(["1000 characters in post is the maximum allowed."])
+        expect(post.errors[:content]).to eq(['1000 characters in post is the maximum allowed.'])
       end
     end
   end
-
 end

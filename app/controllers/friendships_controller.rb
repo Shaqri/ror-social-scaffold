@@ -62,6 +62,4 @@ class FriendshipsController < ApplicationController
     friendship.update(confirmed: true)
     Friendship.create(user_id: params[:user_id], friend_id: params[:id], confirmed: true)
   end
-
-
 end

@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe 'Like requests' do
   let(:user) do
     User.create(email: 'victor@victor.com', name: 'victor', password: 'victor')

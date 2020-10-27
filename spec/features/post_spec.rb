@@ -22,12 +22,12 @@ RSpec.describe 'Post features' do
 
   describe 'Creating a post' do
     it 'creates a post when valid' do
-        sign_up
-        visit('/')
-        fill_in('post_content', with: 'First post')
-        click_button('Save')
-        expect(page).to have_content('Post was successfully created.')
-        expect(Post.first.content).to eq('First post')
+      sign_up
+      visit('/')
+      fill_in('post_content', with: 'First post')
+      click_button('Save')
+      expect(page).to have_content('Post was successfully created.')
+      expect(Post.first.content).to eq('First post')
     end
   end
 end

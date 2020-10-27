@@ -24,7 +24,7 @@ RSpec.describe Like do
     describe 'user_id' do
       it 'must be unique' do
         post
-        like = Like.create(post_id: post.id, user_id: user.id)
+        Like.create(post_id: post.id, user_id: user.id)
         expect(Like.create(post_id: post.id, user_id: user.id)).to_not be_valid
       end
     end
